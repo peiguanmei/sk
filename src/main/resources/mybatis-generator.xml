@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+
+    <!-- !!!! Driver Class Path !!!! -->
+    <classPathEntry
+            location="/home/p/tools/maven/maven-dependcies/mysql/mysql-connector-java/5.1.35/mysql-connector-java-5.1.35.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple">
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 序列化和添加toString的插件 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+
+
+        <!-- mysql 数据库链接 URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/seckill"
+                        userId="root" password="p">
+            <!--Oracle 数据库使用 -->
+            <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="msa" password="msa">-->
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.p.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成的映射文件包名和位置 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成 DAO 的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.p.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 要生成那些表(更改 tableName 和 domainObjectName 就可以) -->
+        <!--<table tableName="seckill" domainObjectName="Users" enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
+        <!-- 默认生成的dao和mapper都是以xxxMapper结尾,添加mapperName可以改成xxxDAO,domainObjectName是设置生成的实体类名的选项 -->
+        <table tableName="success_killed" mapperName="SuccessKillDao"/>
+        <table tableName="seckill" mapperName="SeckillDao"/>
+
+        <!-- 生成全部表可以使用 <table tableName="%" />  但是和mapperName有冲突 -->
+        <!-- mysql自增使用下面2种 -->
+        <!--<table tableName="%">-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
+
+    </context>
+</generatorConfiguration>

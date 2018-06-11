@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.p.dao.SuccessKillDao">
+  <resultMap id="BaseResultMap" type="com.p.entity.SuccessKilled">
+    <id column="seckill_id" jdbcType="BIGINT" property="seckillId" />
+    <id column="user_phone" jdbcType="BIGINT" property="userPhone" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from success_killed
+    where seckill_id = #{seckillId,jdbcType=BIGINT}
+      and user_phone = #{userPhone,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.p.entity.SuccessKilled">
+    insert into success_killed (seckill_id, user_phone, state, 
+      create_time)
+    values (#{seckillId,jdbcType=BIGINT}, #{userPhone,jdbcType=BIGINT}, #{state,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.p.entity.SuccessKilled">
+    update success_killed
+    set state = #{state,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where seckill_id = #{seckillId,jdbcType=BIGINT}
+      and user_phone = #{userPhone,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select seckill_id, user_phone, state, create_time
+    from success_killed
+    where seckill_id = #{seckillId,jdbcType=BIGINT}
+      and user_phone = #{userPhone,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select seckill_id, user_phone, state, create_time
+    from success_killed
+  </select>
+</mapper>
