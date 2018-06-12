@@ -85,8 +85,11 @@
         @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")-->
 
         <table tableName="%">
-            <generatedKey column="id" sqlStatement="JDBC"/>
+            <generatedKey column="seckill_id" sqlStatement="JDBC"/>
         </table>
+        <!--<table tableName="success_killed">-->
+            <!--<generatedKey column="user_phone" sqlStatement="JDBC"/>-->
+        <!--</table>-->
         <!-- 生成实体类注解形式如下 -->
         <!--@Id
         @Column(name = "Id")

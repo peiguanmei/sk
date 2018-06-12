@@ -11,6 +11,7 @@ public class Seckill implements Serializable {
      */
     @Id
     @Column(name = "seckill_id")
+    @GeneratedValue(generator = "JDBC")
     private Long seckillId;
 
     /**
