@@ -1,16 +1,30 @@
 package com.p.dao;
 
+import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.common.Mapper;
 import com.p.entity.Seckill;
+
+import java.util.Date;
 import java.util.List;
 
-public interface SeckillDao {
-    int deleteByPrimaryKey(Long seckillId);
+@Repository
+public interface SeckillDao extends Mapper<Seckill> {
 
-    int insert(Seckill record);
+    /**
+     * 减库存
+     *
+     * @param seckillId the seckill id
+     * @param killTime  the kill time
+     * @return 如果影响行数>1，表示更新库存的记录行数
+     */
+    int reduceNumber(long seckillId, Date killTime);
 
-    Seckill selectByPrimaryKey(Long seckillId);
-
-    List<Seckill> selectAll();
-
-    int updateByPrimaryKey(Seckill record);
+    /**
+     * 根据偏移量查询秒杀商品列表
+     *
+     * @param offset the offset
+     * @param limit  the limit
+     * @return the list
+     */
+    List<Seckill> queryAll(int offset, int limit);
 }
