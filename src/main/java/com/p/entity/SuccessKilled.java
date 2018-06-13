@@ -35,6 +35,17 @@ public class SuccessKilled implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    //多对一，因为一件商品在库存中有很多数量，对应的购买明细也有很多。
+    private Seckill seckill;
+
+    public Seckill getSeckill() {
+        return seckill;
+    }
+
+    public void setSeckill(Seckill seckill) {
+        this.seckill = seckill;
+    }
+
     /**
      * 获取秒杀商品ID
      *
