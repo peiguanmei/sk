@@ -11,10 +11,8 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/spring-dao.xml"})
+@ContextConfiguration({"classpath:spring/applicationContext-dao.xml"})
 public class SeckillDaoTest {
 
     @Resource

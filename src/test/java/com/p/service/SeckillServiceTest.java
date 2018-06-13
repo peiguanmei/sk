@@ -5,8 +5,6 @@ import com.p.dto.SeckillExecution;
 import com.p.entity.Seckill;
 import com.p.exception.RepeatKillException;
 import com.p.exception.SeckillCloseException;
-import com.p.exception.SeckillException;
-import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -17,10 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/spring-dao.xml", "classpath:spring/spring-service.xml"})
+@ContextConfiguration({"classpath:spring/applicationContext-dao.xml"})
 public class SeckillServiceTest {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -71,7 +67,7 @@ public class SeckillServiceTest {
 
         if (exposer.isExposed()) {
             System.out.println(exposer);
-            long userPhone = 15968846718L;
+            long userPhone = 15968846719L;
             String md5 = exposer.getMd5();
 
             try {
