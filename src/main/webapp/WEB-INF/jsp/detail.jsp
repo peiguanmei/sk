@@ -66,18 +66,18 @@
 <%--jQuery Cookie操作插件--%>
 <script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <%--jQuery countDown倒计时插件--%>
-<script src="https://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
 
-<script src="${pageContext.request.contextPath}/resources/script/seckill.js"></script>
+<script src="/resource/script/seckill.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    jQuery(function() {
+    $(function () {
         //使用EL表达式传入参数
         seckill.detail.init({
             seckillId:${seckill.seckillId},
             startTime:${seckill.startTime.time},//毫秒
             endTime:${seckill.endTime.time}
         });
-    });
+    })
 </script>
 </html>

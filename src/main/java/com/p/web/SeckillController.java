@@ -7,18 +7,14 @@ import com.p.entity.Seckill;
 import com.p.enums.SeckillStaEnum;
 import com.p.exception.RepeatKillException;
 import com.p.exception.SeckillCloseException;
-import com.p.exception.SeckillException;
 import com.p.service.SeckillService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 @Controller
 @RequestMapping("/seckill")
@@ -47,11 +43,9 @@ public class SeckillController {
         return "detail";
     }
 
-    @RequestMapping(value = "/{seckillId}/exposer", method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/{seckillId}/exposer", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public SeckillResult<Exposer> exposer(@PathVariable("seckillId") Long seckillId,
-                                          @PathVariable("md5") String md5,
-                                          @CookieValue(value = "killPhone", required = false) Long phone) {
+    public SeckillResult<Exposer> exposer(@PathVariable("seckillId") Long seckillId) {
 
         SeckillResult<Exposer> result;
         try {

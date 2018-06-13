@@ -1,5 +1,5 @@
 <html>
 <body>
-<jsp:forward page="/seckill/list"></jsp:forward>
+<h2>Hello World!</h2>
 </body>
 </html>
