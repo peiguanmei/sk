@@ -14,7 +14,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties"/>
 
     <!--2.数据库连接池-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -81,7 +81,7 @@
 
     <!-- 可以将后面的内容写到一个新的spring-service.xml中 -->
     <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--<property name="dataSource" ref="dataSource"/>-->
     <!--</bean>-->
     <!--<context:component-scan base-package="com.p.service"/>-->
 
@@ -108,4 +108,23 @@
     <!--<tx:method name="*"/>-->
     <!--</tx:attributes>-->
     <!--</tx:advice>-->
+
+    <!-- redisDao -->
+    <!--Jedis连接池的相关配置-->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!--新版是maxTotal，旧版是maxActive-->
+        <property name="maxTotal" value="${redis.pool.maxActive}"/>
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+    </bean>
+    <bean id="redisDao" class="com.p.dao.cache.RedisDao">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1" value="${redis.host}"/>
+        <constructor-arg index="2" value="${redis.port}"/>
+        <constructor-arg index="3" value="${redis.timeout}"/>
+        <constructor-arg index="4" value="${redis.password}"/>
+        <!-- 或者使用下面的配置方法 -->
+        <!--<constructor-arg name="config" ref="jedisPoolConfig"/>-->
+    </bean>
 </beans>

@@ -48,6 +48,8 @@ public class SeckillServiceImpl implements SeckillService {
     @Override
     public Exposer exportSeckillUrl(long seckillId) {
         Seckill seckill = seckillDao.selectByPrimaryKey(seckillId);
+        //缓存优化使用redis替代
+
         //没有商品id
         if (seckill == null) {
             return new Exposer(false, seckillId);

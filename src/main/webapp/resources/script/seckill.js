@@ -6,13 +6,13 @@ var seckill = {
     //封装秒杀相关ajax的url
     URL: {
         now: function () {
-            return '/seckill/time/now';
+            return '/seckill/seckill/time/now';
         },
         exposer: function (seckillId) {
-            return '/seckill/' + seckillId + '/exposer';
+            return '/seckill/seckill/' + seckillId + '/exposer';
         },
         execution: function (seckillId, md5) {
-            return '/seckill/' + seckillId + '/' + md5 + '/execution';
+            return '/seckill/seckill/' + seckillId + '/' + md5 + '/execution';
         }
     },
 
@@ -45,7 +45,7 @@ var seckill = {
 
                 $('#killPhoneBtn').click(function () {
                     var inputPhone = $('#killPhoneKey').val();
-                    console.log("inputPhone: " + inputPhone);
+//                    console.log("inputPhone: " + inputPhone);
                     if (seckill.validatePhone(inputPhone)) {
                         //电话写入cookie(7天过期)
                         $.cookie('userPhone', inputPhone, {expires: 7, path: '/seckill'});
@@ -63,6 +63,8 @@ var seckill = {
             var startTime = params['startTime'];
             var endTime = params['endTime'];
             var seckillId = params['seckillId'];
+//            console.log("开始秒杀时间=======" + startTime);
+//            console.log("结束秒杀时间========" + endTime);
             $.get(seckill.URL.now(), {}, function (result) {
                 if (result && result['success']) {
                     var nowTime = result['data'];
@@ -145,5 +147,4 @@ var seckill = {
             seckill.handlerSeckill(seckillId, seckillBox);
         }
     }
-
-}
+};
