@@ -1,11 +1,13 @@
 package com.p.entity;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "success_killed")
-public class SuccessKilled implements Serializable {
+public class SuccessKilled {
     /**
      * 秒杀商品ID
      */
@@ -32,8 +34,6 @@ public class SuccessKilled implements Serializable {
      */
     @Column(name = "create_time")
     private Date createTime;
-
-    private static final long serialVersionUID = 1L;
 
     //多对一，因为一件商品在库存中有很多数量，对应的购买明细也有很多。
     private Seckill seckill;

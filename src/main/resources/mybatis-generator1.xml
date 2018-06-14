@@ -11,7 +11,7 @@
         <property name="endingDelimiter" value="`"/>
 
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
 
         <!--caseSensitive 是否区分大小写，默认值 false。如果数据库区分大小写，这里就需要配置为 true，这样当表名为 USER 时，会生成 @Table(name = "USER") 注解，否则使用小写 user 时会找不到表。-->
         <!--forceAnnotation 是否强制生成注解，默认 false，如果设置为 true，不管数据库名和字段名是否一致，都会生成注解（包含 @Table 和 @Column）。-->

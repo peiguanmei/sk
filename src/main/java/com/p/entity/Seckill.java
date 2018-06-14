@@ -1,11 +1,13 @@
 package com.p.entity;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "seckill")
-public class Seckill implements Serializable {
+public class Seckill {
     /**
      * 商品库存ID
      */
@@ -43,8 +45,6 @@ public class Seckill implements Serializable {
      */
     @Column(name = "create_time")
     private Date createTime;
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 获取商品库存ID
